@@ -55,8 +55,11 @@ class PredictService(object):
         tfile = tempfile.NamedTemporaryFile(delete=False)
         tfile.write(f.read())
         
+        # get inference results
         res, data = inference_detector(clf, tfile.name)
         results = {}
+        
+        # change torch tensors to numpy arrays
         results['boxes_3d'] = res[0]['boxes_3d'].tensor.detach().cpu().numpy()
         results['scores_3d'] = res[0]['scores_3d'].tensor.detach().cpu().numpy()
         results['labels_3d'] = res[0]['labels_3d'].tensor.detach().cpu().numpy()
