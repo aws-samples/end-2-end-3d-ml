@@ -61,8 +61,8 @@ class PredictService(object):
         
         # change torch tensors to numpy arrays
         results['boxes_3d'] = res[0]['boxes_3d'].tensor.detach().cpu().numpy()
-        results['scores_3d'] = res[0]['scores_3d'].tensor.detach().cpu().numpy()
-        results['labels_3d'] = res[0]['labels_3d'].tensor.detach().cpu().numpy()
+        results['scores_3d'] = res[0]['scores_3d'].detach().cpu().numpy()
+        results['labels_3d'] = res[0]['labels_3d'].detach().cpu().numpy()
         mm_result = {'result': results, 'data': data}
         return mm_result
 
