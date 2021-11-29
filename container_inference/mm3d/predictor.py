@@ -11,6 +11,7 @@ import pickle
 import flask
 
 import torch
+from glob import glob
 
 from mmdet3d.apis import init_model, inference_detector
 
@@ -39,8 +40,8 @@ class PredictService(object):
         if cls.model == None:
             device = "cuda" if torch.cuda.is_available() else "cpu"
                 
-            config_file = os.path.join(model_path, "3dssd_4x4_a2d2-3d-car.py")
-            checkpoint_file = os.path.join(model_path, "epoch_1.pth")
+            config_file = glob(f'{model_path}/*.py')[0]
+            checkpoint_file = glob(f"{model_path}/*.pth")[0]
             print(f"Loading config file {config_file} from path {model_path}")
 
             cls.model = init_model(config_file, checkpoint_file, device=device)
