@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y ffmpeg libsm6 libxext6 git ninja-build 
 RUN pip install --upgrade --force-reinstall  torch==1.8.1 torchvision==0.9.1 cython boto3
 
 # Install MMCV, MMDetection and MMSegmentation
-RUN export MKL_SERVICE_FORCE_INTEL=1 && pip install mmcv-full -f https://download.openmmlab.com/mmcv/dist/cu111/torch1.8.1/index.html
+RUN export MKL_SERVICE_FORCE_INTEL=1 && pip install mmcv-full==1.4.0 -f https://download.openmmlab.com/mmcv/dist/cu111/torch1.8.1/index.html
 RUN pip install mmdet==2.14.0
 RUN pip install mmsegmentation==0.14.1
 
