@@ -38,7 +38,7 @@ class PredictService(object):
     def get_model(cls):
         """Get the model object for this instance, loading it if it's not already loaded."""
         if cls.model == None:
-            device = "cuda" if torch.cuda.is_available() else "cpu"
+            device = "cuda:0" if torch.cuda.is_available() else "cpu"
                 
             config_file = glob(f'{model_path}/*.py')[0]
             checkpoint_file = glob(f"{model_path}/*.pth")[0]
